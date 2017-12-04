@@ -1,16 +1,15 @@
-//LIT TRIVIA GAME: Lit = true and Trippin = false. Max clout (score) level is 6,
-// which means the user picked the correct option for every statement.
+//LIT TRIVIA GAME: Lit = true and Trippin = false. Max clout (score) level is 6.
+// If a user picks the correct option, their clout level will go up by 1.
 // I hope you don't mind the silly theme. :)
 
 // Trivia game countdown timer start number
 var number = 31;
 
 // Variable that will hold the interval ID
-// when "run" function is executed.
 var intervalId;
 
-//As the user makes choices (true="lit and false="trippin") which
-// will increase the counters on correctAnswers and incorrectAnswers.
+//As the user makes choices (true="lit and false="trippin") the counters
+// for correctAnswers and incorrectAnswers will increase (to a maximum of 6).
 //They'll each start with 0 points.
 var correctAnswers = 0;
 var incorrectAnswers = 0;
@@ -23,12 +22,17 @@ var checkedFour = false;
 var checkedFive = false;
 var checkedSix = false;
 
+//Play area is hidden until start button is clicked by user.
+$('#choice-box').hide();
 
-//When Start button is clicked, this function will execute the run function.
+
+//When Start button is clicked, this function will execute the run function
+// and show the play area.
 $('#start').on("click", run);
   //Set decrenment function to run on start button click
   //Function will also reset countdown timer and hide start button
   function run() {
+    $('#choice-box').show();
     number = 31;
     correctAnswers = 0;
     incorrectAnswers = 0;
@@ -36,13 +40,12 @@ $('#start').on("click", run);
     intervalId = setInterval(decrement, 1000);
   }
 
-
   // When window loads, this function will be executed
   function decrement() {
     //Decrease number by one.
     number--;
     // Display number on page
-    $('#timer').html("<h2>" + number + "</h2>");
+    $('#timer').html("<h1>" + "Time Remaining: " + number + "</h1>");
     //Once the timer hits zero, the function will stop.
     //Also, alert user that time is up, show start button again, and reset timer.
     if (number === 0) {
@@ -73,7 +76,7 @@ $('#start').on("click", run);
           userAnswerOne = radioOne[i].value;
         }
       }
-      //The User's answer will either add points to trueChoices or falseChoices
+      //The User's answer will either add points to correctAnswers or incorrectAnswers.
       if(userAnswerOne === "Lit") {
         correctAnswers++;
       }
@@ -97,7 +100,7 @@ $('#start').on("click", run);
           userAnswerTwo = radioTwo[i].value;
         }
       }
-      //The User's answer will either add points to trueChoices or falseChoices
+      //The User's answer will either add points to correctAnswers or incorrectAnswers.
       if(userAnswerTwo === "Trippin") {
         correctAnswers++;
       }
@@ -121,7 +124,7 @@ $('#start').on("click", run);
           userAnswerThree = radioThree[i].value;
         }
       }
-      //The User's answer will either add points to trueChoices or falseChoices
+      //The User's answer will either add points to correctAnswers or incorrectAnswers.
       if(userAnswerThree === "Lit") {
         correctAnswers++;
       }
@@ -145,7 +148,7 @@ $('#start').on("click", run);
           userAnswerFour = radioFour[i].value;
         }
       }
-      //The User's answer will either add points to trueChoices or falseChoices
+      //The User's answer will either add points to correctAnswers or incorrectAnswers.
       if(userAnswerFour === "Lit") {
         correctAnswers++;
       }
@@ -169,7 +172,7 @@ $('#start').on("click", run);
             userAnswerFive = radioFive[i].value;
           }
         }
-        //The User's answer will either add points to trueChoices or falseChoices
+        //The User's answer will either add points to correctAnswers or incorrectAnswers.
         if(userAnswerFive === "Trippin") {
           correctAnswers++;
         }
@@ -193,7 +196,7 @@ $('#start').on("click", run);
               userAnswerSix = radioSix[i].value;
             }
           }
-          //The User's answer will either add points to trueChoices or falseChoices
+          //The User's answer will either add points to correctAnswers or incorrectAnswers.
           if(userAnswerSix === "Lit") {
             correctAnswers++;
           }
@@ -218,19 +221,22 @@ function endGame() {
   }
   else if(correctAnswers == 4 && incorrectAnswers == 2 && number > 0) {
     alert("You scored a clout level of 4 out of 6.")
-    alert("Nice clout game, homie.")
+    alert("Decent clout game, homie.")
     location.reload();
   }
   else if(correctAnswers == 3 && incorrectAnswers == 3 && number > 0) {
     alert("You scored a clout level of 3 out of 6.")
+    alert("Not too bad, but not too great.")
     location.reload();
   }
   else if(correctAnswers == 2 && incorrectAnswers == 4 && number > 0) {
     alert("You scored a clout level of 2 out of 6.")
+    alert("Ouch, that's a little low.")
     location.reload();
   }
   else if(correctAnswers == 1 && incorrectAnswers == 5 && number > 0) {
     alert("You scored a clout level of 1 out of 6.")
+    alert("Someone's gotta work on their clout game!")
     location.reload();
   }
   else if(correctAnswers == 0 && incorrectAnswers == 6 && number > 0) {
